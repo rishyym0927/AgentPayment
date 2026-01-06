@@ -16,11 +16,11 @@ export function ChainsSection() {
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 180]);
 
   return (
-    <section ref={ref} className="py-32 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left - Visual */}
-          <div className="relative order-2 lg:order-1">
+    <section ref={ref} className="py-16 sm:py-24 lg:py-32 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          {/* Left - Visual (hidden on mobile) */}
+          <div className="relative order-2 lg:order-1 hidden md:block">
             <FadeIn direction="right">
               <div className="relative w-full aspect-square max-w-md mx-auto">
                 {/* Orbit rings */}
@@ -92,13 +92,13 @@ export function ChainsSection() {
           {/* Right - Content */}
           <div className="order-1 lg:order-2">
             <FadeIn>
-              <div className="inline-block px-3 py-1 mb-4 text-xs font-medium text-white/60 bg-white/5 rounded-full border border-white/10">
+              <div className="inline-block px-3 py-1 mb-3 sm:mb-4 text-xs font-medium text-white/60 bg-white/5 rounded-full border border-white/10">
                 Chain-Agnostic Execution
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
               <h2
-                className="text-4xl md:text-5xl font-bold mb-6"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6"
                 style={{ fontFamily: "var(--font-space-grotesk)" }}
               >
                 One protocol,
@@ -107,7 +107,7 @@ export function ChainsSection() {
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p className="text-lg text-white/50 mb-8 leading-relaxed">
+              <p className="text-base sm:text-lg text-white/50 mb-6 sm:mb-8 leading-relaxed">
                 Unified transaction execution across Solana and Ethereum. Your agents
                 operate with deterministic behavior regardless of chain—same SDK,
                 same safety guarantees, same X402 billing.

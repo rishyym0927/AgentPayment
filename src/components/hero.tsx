@@ -94,12 +94,12 @@ export function HeroSection() {
       />
 
       {/* Main content */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-12 gap-12 items-center min-h-screen py-24">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-screen py-16 sm:py-24">
           {/* Left - Main content */}
           <div className="lg:col-span-7">
             <FadeIn delay={0}>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 rounded-full border border-white/10 bg-white/[0.03]">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 sm:mb-8 rounded-full border border-white/10 bg-white/[0.03]">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
@@ -110,7 +110,7 @@ export function HeroSection() {
 
             <FadeIn delay={0.1}>
               <h1
-                className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] mb-6"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] sm:leading-[1.05] mb-4 sm:mb-6"
                 style={{ fontFamily: "var(--font-space-grotesk)" }}
               >
                 AI Agents That
@@ -122,7 +122,7 @@ export function HeroSection() {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <p className="text-lg text-white/50 max-w-lg mb-10 leading-relaxed">
+              <p className="text-base sm:text-lg text-white/50 max-w-lg mb-8 sm:mb-10 leading-relaxed">
                 Enable your AI agents to sign and execute blockchain transactions autonomously.
                 Policy-enforced security, session-based authority, and pay-per-request billing
                 via X402—no wallet popups, no human-in-the-loop.
@@ -130,17 +130,17 @@ export function HeroSection() {
             </FadeIn>
 
             <FadeIn delay={0.3}>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <MagneticButton>
                   <Link
                     href={session ? "/dashboard" : "/auth/signin"}
-                    className="px-8 py-4 bg-white text-black font-semibold rounded-xl hover:bg-white/90 transition-colors inline-block"
+                    className="px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-black font-semibold rounded-xl hover:bg-white/90 transition-colors inline-block text-center"
                   >
                     {session ? "Go to Dashboard →" : "Start Building →"}
                   </Link>
                 </MagneticButton>
                 <MagneticButton>
-                  <button className="px-8 py-4 border border-white/20 text-white font-medium rounded-xl hover:bg-white/5 transition-colors">
+                  <button className="px-6 sm:px-8 py-3.5 sm:py-4 border border-white/20 text-white font-medium rounded-xl hover:bg-white/5 transition-colors w-full sm:w-auto">
                     View Docs
                   </button>
                 </MagneticButton>
@@ -149,18 +149,18 @@ export function HeroSection() {
 
             {/* Trust indicators */}
             <FadeIn delay={0.4}>
-              <div className="flex items-center gap-6 mt-12 text-sm text-white/40">
-                <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-6 mt-8 sm:mt-12 text-xs sm:text-sm text-white/40">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                   <span className="text-white font-medium">Zero</span>
                   <span>wallet signatures</span>
                 </div>
-                <div className="w-px h-4 bg-white/10" />
-                <div className="flex items-center gap-2">
+                <div className="hidden sm:block w-px h-4 bg-white/10" />
+                <div className="flex items-center gap-1.5 sm:gap-2">
                   <span className="text-white font-medium">Policy</span>
                   <span>enforced</span>
                 </div>
-                <div className="w-px h-4 bg-white/10" />
-                <div className="flex items-center gap-2">
+                <div className="hidden sm:block w-px h-4 bg-white/10" />
+                <div className="flex items-center gap-1.5 sm:gap-2">
                   <span className="text-white font-medium">99.99%</span>
                   <span>uptime</span>
                 </div>
@@ -169,7 +169,7 @@ export function HeroSection() {
           </div>
 
           {/* Right - Stats cards */}
-          <div className="lg:col-span-5">
+          <div className="hidden lg:block lg:col-span-5">
             <div className="space-y-4">
               <FadeIn delay={0.2} direction="left">
                 <TiltCard>
@@ -251,7 +251,7 @@ export function HeroSection() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2"
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
       >

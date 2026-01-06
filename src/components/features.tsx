@@ -9,18 +9,18 @@ import { FadeIn, StaggerContainer, StaggerItem, TiltCard } from "./animations";
    ============================================================ */
 export function FeaturesSection() {
   return (
-    <section className="py-32 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section header */}
-        <div className="max-w-2xl mb-16">
+        <div className="max-w-2xl mb-10 sm:mb-16">
           <FadeIn>
-            <div className="inline-block px-3 py-1 mb-4 text-xs font-medium text-white/60 bg-white/5 rounded-full border border-white/10">
+            <div className="inline-block px-3 py-1 mb-3 sm:mb-4 text-xs font-medium text-white/60 bg-white/5 rounded-full border border-white/10">
               Protocol Guarantees
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
             <h2
-              className="text-4xl md:text-5xl font-bold mb-4"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4"
               style={{ fontFamily: "var(--font-space-grotesk)" }}
             >
               Hard constraints,
@@ -29,7 +29,7 @@ export function FeaturesSection() {
             </h2>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <p className="text-lg text-white/50">
+            <p className="text-base sm:text-lg text-white/50">
               Security enforced at the protocol layer—not in prompts. Session-based authority,
               spending limits, and restricted function access prevent exploits by design.
             </p>
@@ -99,12 +99,12 @@ export function FeaturesSection() {
           ].map((feature, i) => (
             <FadeIn key={feature.title} delay={0.15 + i * 0.05}>
               <TiltCard className="h-full">
-                <div className="h-full p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
-                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-xl mb-4">
+                <div className="h-full p-4 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
+                  <div className="w-9 sm:w-10 h-9 sm:h-10 rounded-lg bg-white/5 flex items-center justify-center text-lg sm:text-xl mb-3 sm:mb-4">
                     {feature.icon}
                   </div>
-                  <h3 className="font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-sm text-white/40 leading-relaxed">
+                  <h3 className="font-semibold text-sm sm:text-base mb-1.5 sm:mb-2">{feature.title}</h3>
+                  <p className="text-xs sm:text-sm text-white/40 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>

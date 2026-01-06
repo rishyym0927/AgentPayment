@@ -11,23 +11,23 @@ export function CTASection() {
   const [email, setEmail] = useState("");
 
   return (
-    <section className="py-32 px-6">
+    <section className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto">
         <FadeIn>
           {/* Gradient border container */}
-          <div className="relative p-[1px] rounded-3xl bg-gradient-to-r from-white/20 via-white/5 to-white/20 overflow-hidden">
-            <div className="bg-[#050505] rounded-3xl p-12 md:p-16 text-center relative overflow-hidden">
+          <div className="relative p-[1px] rounded-2xl sm:rounded-3xl bg-gradient-to-r from-white/20 via-white/5 to-white/20 overflow-hidden">
+            <div className="bg-[#050505] rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 text-center relative overflow-hidden">
               {/* Background glow */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/[0.02] rounded-full blur-3xl" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 sm:w-96 h-64 sm:h-96 bg-white/[0.02] rounded-full blur-3xl" />
 
               <div className="relative z-10">
                 <h2
-                  className="text-3xl md:text-5xl font-bold mb-6"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6"
                   style={{ fontFamily: "var(--font-space-grotesk)" }}
                 >
                   Give your agents financial autonomy
                 </h2>
-                <p className="text-lg text-white/50 mb-10 max-w-lg mx-auto">
+                <p className="text-base sm:text-lg text-white/50 mb-6 sm:mb-10 max-w-lg mx-auto">
                   Create a project, get your API key, and let your AI agents
                   execute transactions autonomously. SDK or pre-built modal—your choice.
                 </p>
@@ -75,9 +75,9 @@ export function Footer() {
   };
 
   return (
-    <footer className="py-16 border-t border-white/[0.06]">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+    <footer className="py-10 sm:py-16 border-t border-white/[0.06]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Logo */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">

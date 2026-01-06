@@ -6,7 +6,6 @@ export {
   ScaleIn,
   ParallaxSection,
   TextReveal,
-  RotatingWords,
   MagneticButton,
   TiltCard,
   AnimatedCounter,
