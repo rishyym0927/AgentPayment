@@ -93,7 +93,7 @@ export function ChainsSection() {
           <div className="order-1 lg:order-2">
             <FadeIn>
               <div className="inline-block px-3 py-1 mb-4 text-xs font-medium text-white/60 bg-white/5 rounded-full border border-white/10">
-                Multi-Chain
+                Chain-Agnostic Execution
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
@@ -101,16 +101,16 @@ export function ChainsSection() {
                 className="text-4xl md:text-5xl font-bold mb-6"
                 style={{ fontFamily: "var(--font-space-grotesk)" }}
               >
-                Deploy where
+                One protocol,
                 <br />
-                <span className="gradient-text">your users are</span>
+                <span className="gradient-text">any blockchain</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="text-lg text-white/50 mb-8 leading-relaxed">
-                One SDK, multiple networks. Start on Solana for speed, expand to
-                Ethereum for liquidity. Your agents seamlessly operate across
-                chains with unified APIs.
+                Unified transaction execution across Solana and Ethereum. Your agents
+                operate with deterministic behavior regardless of chain—same SDK,
+                same safety guarantees, same X402 billing.
               </p>
             </FadeIn>
 
@@ -163,7 +163,7 @@ export function ChainsSection() {
                     <div>
                       <div className="font-medium">Base, Arbitrum, Polygon</div>
                       <div className="text-xs text-white/40">
-                        L2 support coming Q1 2025
+                        L2 support coming Q2 2026
                       </div>
                     </div>
                   </div>

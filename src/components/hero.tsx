@@ -7,7 +7,6 @@ import { useSession } from "next-auth/react";
 import {
   FadeIn,
   TextReveal,
-  RotatingWords,
   MagneticButton,
   TiltCard,
 } from "./animations";
@@ -15,25 +14,43 @@ import {
 /* ============================================================
    PARTICLES BACKGROUND
    ============================================================ */
+const particlePositions = [
+  { left: 5, top: 12, duration: 9, delay: 0.5 },
+  { left: 15, top: 45, duration: 10, delay: 1.2 },
+  { left: 25, top: 78, duration: 8, delay: 2.8 },
+  { left: 35, top: 23, duration: 11, delay: 0.3 },
+  { left: 45, top: 67, duration: 9.5, delay: 3.5 },
+  { left: 55, top: 34, duration: 10.5, delay: 1.8 },
+  { left: 65, top: 89, duration: 8.5, delay: 4.2 },
+  { left: 75, top: 56, duration: 9, delay: 2.1 },
+  { left: 85, top: 15, duration: 11.5, delay: 0.8 },
+  { left: 92, top: 42, duration: 10, delay: 3.0 },
+  { left: 8, top: 71, duration: 8, delay: 4.5 },
+  { left: 48, top: 8, duration: 9.5, delay: 1.5 },
+  { left: 72, top: 38, duration: 10, delay: 2.5 },
+  { left: 28, top: 92, duration: 8.5, delay: 3.8 },
+  { left: 88, top: 75, duration: 11, delay: 0.1 },
+];
+
 function Particles() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(15)].map((_, i) => (
+      {particlePositions.map((particle, i) => (
         <motion.div
           key={i}
           className="absolute w-1 h-1 bg-white/20 rounded-full"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+            left: `${particle.left}%`,
+            top: `${particle.top}%`,
           }}
           animate={{
             y: [0, -30, 0],
             opacity: [0.2, 0.5, 0.2],
           }}
           transition={{
-            duration: 8 + Math.random() * 4,
+            duration: particle.duration,
             repeat: Infinity,
-            delay: Math.random() * 5,
+            delay: particle.delay,
           }}
         />
       ))}
@@ -98,19 +115,17 @@ export function HeroSection() {
               >
                 AI Agents That
                 <br />
-                <span className="gradient-text">
-                  <RotatingWords words={["Pay", "Trade", "Execute"]} />
-                </span>
+                <span className="gradient-text">Pay & Execute</span>
                 <br />
-                Autonomously
+                Without Human Approval
               </h1>
             </FadeIn>
 
             <FadeIn delay={0.2}>
               <p className="text-lg text-white/50 max-w-lg mb-10 leading-relaxed">
-                The payment infrastructure for autonomous AI. Your agents can
-                pay for APIs, services, and resources on Solana and
-                Ethereum—without human intervention.
+                Enable your AI agents to sign and execute blockchain transactions autonomously.
+                Policy-enforced security, session-based authority, and pay-per-request billing
+                via X402—no wallet popups, no human-in-the-loop.
               </p>
             </FadeIn>
 
@@ -136,13 +151,13 @@ export function HeroSection() {
             <FadeIn delay={0.4}>
               <div className="flex items-center gap-6 mt-12 text-sm text-white/40">
                 <div className="flex items-center gap-2">
-                  <span className="text-white font-medium">$2.4M+</span>
-                  <span>processed</span>
+                  <span className="text-white font-medium">Zero</span>
+                  <span>wallet signatures</span>
                 </div>
                 <div className="w-px h-4 bg-white/10" />
                 <div className="flex items-center gap-2">
-                  <span className="text-white font-medium">10K+</span>
-                  <span>agents</span>
+                  <span className="text-white font-medium">Policy</span>
+                  <span>enforced</span>
                 </div>
                 <div className="w-px h-4 bg-white/10" />
                 <div className="flex items-center gap-2">

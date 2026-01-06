@@ -15,7 +15,7 @@ export function FeaturesSection() {
         <div className="max-w-2xl mb-16">
           <FadeIn>
             <div className="inline-block px-3 py-1 mb-4 text-xs font-medium text-white/60 bg-white/5 rounded-full border border-white/10">
-              Why X402
+              Protocol Guarantees
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
@@ -23,15 +23,15 @@ export function FeaturesSection() {
               className="text-4xl md:text-5xl font-bold mb-4"
               style={{ fontFamily: "var(--font-space-grotesk)" }}
             >
-              Infrastructure built for
+              Hard constraints,
               <br />
-              <span className="gradient-text">autonomous agents</span>
+              <span className="gradient-text">not prompt-based rules</span>
             </h2>
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="text-lg text-white/50">
-              Enterprise-grade security meets developer-friendly APIs.
-              Everything your AI needs to transact safely at scale.
+              Security enforced at the protocol layer—not in prompts. Session-based authority,
+              spending limits, and restricted function access prevent exploits by design.
             </p>
           </FadeIn>
         </div>
@@ -44,24 +44,24 @@ export function FeaturesSection() {
               <div className="h-full p-8 rounded-2xl bg-gradient-to-br from-white/[0.04] to-white/[0.01] border border-white/10 relative overflow-hidden">
                 <div className="relative z-10">
                   <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-2xl mb-6">
-                    🔐
+                    �️
                   </div>
                   <h3 className="text-2xl font-bold mb-3">
-                    Hardware Security Modules
+                    Session-Based Authority
                   </h3>
                   <p className="text-white/50 max-w-md leading-relaxed mb-6">
-                    Private keys never leave HSMs. Military-grade encryption
-                    protects every transaction. Your agents operate with the
-                    same security as major financial institutions.
+                    Agents receive time-limited session keys with enforced spending caps.
+                    Full account cleanup before revocation. Keys auto-invalidate on expiry—
+                    no lingering permissions, no attack surface.
                   </p>
                   <div className="flex items-center gap-4 text-sm">
                     <div className="flex items-center gap-2 text-green-500">
                       <span className="w-2 h-2 rounded-full bg-green-500" />
-                      SOC 2 Type II
+                      Max per-tx limits
                     </div>
                     <div className="flex items-center gap-2 text-white/40">
                       <span className="w-2 h-2 rounded-full bg-white/40" />
-                      FIPS 140-2 Level 3
+                      Daily spending caps
                     </div>
                   </div>
                 </div>
@@ -74,27 +74,27 @@ export function FeaturesSection() {
           {/* Small feature cards */}
           {[
             {
-              icon: "⚡",
-              title: "Sub-10ms Latency",
+              icon: "🔒",
+              title: "Restricted Functions",
               description:
-                "Optimized transaction routing ensures your agents never wait",
+                "Agents receive a fixed allowlist of functions—no arbitrary calls, no prompt injection exploits",
             },
             {
-              icon: "📊",
-              title: "Real-time Analytics",
+              icon: "⚖️",
+              title: "Trade Safety Enforcement",
               description:
-                "Monitor spending, success rates, and agent performance live",
+                "Unsafe price impact trades are auto-blocked via Jupiter's Swap API wrapper",
             },
             {
-              icon: "🛡️",
-              title: "Built-in Rate Limits",
+              icon: "⛽",
+              title: "Intelligent Gas Management",
               description:
-                "Set spending caps per agent, per day, or per transaction",
+                "Auto micro-swap SPL tokens (USDC/USDT) to SOL when gas is low—zero interruptions",
             },
             {
-              icon: "📋",
-              title: "Complete Audit Trail",
-              description: "Every transaction logged with cryptographic proofs",
+              icon: "💳",
+              title: "X402 Pay-Per-Request",
+              description: "Non-custodial, automatic billing per API call—no invoices, no manual payments",
             },
           ].map((feature, i) => (
             <FadeIn key={feature.title} delay={0.15 + i * 0.05}>
@@ -133,14 +133,16 @@ export function CodeSection() {
   const code = `import { Agent } from '@x402/sdk';
 
 const agent = new Agent({
+  apiKey: process.env.X402_API_KEY,
   network: 'solana',
-  limits: { daily: 10, perTx: 0.1 }
+  session: { maxTotal: 50, maxPerTx: 1 }
 });
 
-await agent.pay({
-  to: 'api-provider.sol',
-  amount: 0.002,
-  memo: 'GPT-4 API call'
+// Agent signs autonomously
+await agent.executePayment({
+  to: 'service-provider.sol',
+  amount: 0.05,
+  memo: 'API request via X402'
 });`;
 
   useEffect(() => {
@@ -165,7 +167,7 @@ await agent.pay({
           <div>
             <FadeIn>
               <div className="inline-block px-3 py-1 mb-4 text-xs font-medium text-white/60 bg-white/5 rounded-full border border-white/10">
-                Developer Experience
+                Two Integration Paths
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
@@ -173,25 +175,25 @@ await agent.pay({
                 className="text-4xl md:text-5xl font-bold mb-6"
                 style={{ fontFamily: "var(--font-space-grotesk)" }}
               >
-                Ship in minutes,
+                SDK or plug-and-play
                 <br />
-                <span className="gradient-text">not months</span>
+                <span className="gradient-text">AI agent modal</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="text-lg text-white/50 mb-8 leading-relaxed">
-                Our SDK handles the complexity of wallet creation, transaction
-                signing, and multi-chain management. You write the logic; we
-                handle the payments.
+                Install our npm SDK to inject payment capabilities into your existing agent,
+                or embed our pre-built AI modal with built-in safety rules and session management.
+                Both use the same underlying protocol.
               </p>
             </FadeIn>
 
             <StaggerContainer staggerDelay={0.1}>
               {[
-                "Full TypeScript support with autocomplete",
-                "Built-in retry logic and error handling",
-                "Webhook notifications for every event",
-                "Testnet mode for safe development",
+                "Protocol-level instruction injection",
+                "Session-based autonomous signing",
+                "Enforced spending limits & function allowlists",
+                "Pre-built modal or full SDK flexibility",
               ].map((feature, i) => (
                 <StaggerItem key={i}>
                   <div className="flex items-center gap-3 mb-3 text-white/70">

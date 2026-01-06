@@ -25,11 +25,11 @@ export function CTASection() {
                   className="text-3xl md:text-5xl font-bold mb-6"
                   style={{ fontFamily: "var(--font-space-grotesk)" }}
                 >
-                  Ready to build the future?
+                  Give your agents financial autonomy
                 </h2>
                 <p className="text-lg text-white/50 mb-10 max-w-lg mx-auto">
-                  Join 10,000+ developers building autonomous AI economies.
-                  Start with our free tier—no credit card required.
+                  Create a project, get your API key, and let your AI agents
+                  execute transactions autonomously. SDK or pre-built modal—your choice.
                 </p>
 
                 {/* Email form */}
@@ -52,7 +52,7 @@ export function CTASection() {
                 </div>
 
                 <p className="text-xs text-white/30">
-                  Free tier: 1,000 transactions/month • Upgrade anytime
+                  Pay-per-request via X402 • No upfront costs • No credit card required
                 </p>
               </div>
             </div>
@@ -85,7 +85,7 @@ export function Footer() {
               <span className="font-bold text-lg">X402</span>
             </div>
             <p className="text-sm text-white/40 max-w-xs">
-              Payment infrastructure for autonomous AI agents.
+              Autonomous blockchain execution for AI agents. Policy-enforced, non-custodial.
             </p>
           </div>
 
@@ -112,7 +112,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-white/[0.06]">
           <div className="text-sm text-white/30">
-            © 2025 X402 Protocol. All rights reserved.
+            © 2026 X402 Protocol. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
             {["GitHub", "Discord", "Twitter"].map((social) => (

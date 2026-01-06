@@ -1,12 +1,13 @@
 "use client";
 
-import { useRef, ReactNode } from "react";
+import { useRef, ReactNode, useState, useEffect } from "react";
 import {
   motion,
   useInView,
   useScroll,
   useTransform,
   MotionValue,
+  AnimatePresence,
 } from "framer-motion";
 
 /* ============================================================
@@ -202,31 +203,43 @@ export function TextReveal({
 }
 
 /* ============================================================
-   ROTATING TEXT
+   TYPEWRITER TEXT
    ============================================================ */
-export function RotatingWords({ words }: { words: string[] }) {
+export function TypewriterText({ words }: { words: string[] }) {
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentWord = words[currentWordIndex];
+    
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (currentText.length < currentWord.length) {
+          setCurrentText(currentWord.slice(0, currentText.length + 1));
+        } else {
+          // Pause before deleting
+          setTimeout(() => setIsDeleting(true), 1500);
+        }
+      } else {
+        // Deleting
+        if (currentText.length > 0) {
+          setCurrentText(currentText.slice(0, -1));
+        } else {
+          setIsDeleting(false);
+          setCurrentWordIndex((prev) => (prev + 1) % words.length);
+        }
+      }
+    }, isDeleting ? 50 : 100);
+
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, currentWordIndex, words]);
+
   return (
-    <span className="relative inline-block min-w-[200px] h-[1.2em] overflow-hidden align-bottom">
-      {words.map((word, index) => (
-        <motion.span
-          key={word}
-          className="absolute left-0 whitespace-nowrap"
-          initial={{ y: "100%", opacity: 0 }}
-          animate={{
-            y: ["100%", "0%", "0%", "-100%"],
-            opacity: [0, 1, 1, 0],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            repeatDelay: (words.length - 1) * 4,
-            delay: index * 4,
-            ease: "easeInOut",
-          }}
-        >
-          {word}
-        </motion.span>
-      ))}
+    <span className="inline-block">
+      {currentText}
+      <span className="inline-block w-[3px] h-[0.9em] bg-current ml-1 animate-pulse" />
     </span>
   );
 }
