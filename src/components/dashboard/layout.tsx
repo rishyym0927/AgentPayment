@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useSession, signOut } from "next-auth/react";
 
 /* ============================================================
    SIDEBAR COMPONENT
@@ -19,6 +20,9 @@ const navItems = [
 ];
 
 export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
+  const { data: session } = useSession();
+  const user = session?.user;
+
   return (
     <motion.aside
       initial={{ x: -20, opacity: 0 }}
@@ -73,17 +77,43 @@ export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
       {/* User Section */}
       <div className="pt-5 border-t border-white/[0.06]">
         <div className="flex items-center gap-3 px-2">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-xs font-medium">
-            D
-          </div>
+          {user?.image ? (
+            <img
+              src={user.image}
+              alt={user.name || "User"}
+              className="w-8 h-8 rounded-full object-cover"
+            />
+          ) : (
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-xs font-medium">
+              {user?.name?.[0] || user?.email?.[0] || "U"}
+            </div>
+          )}
           <div className="flex-1 min-w-0">
-            <div className="text-sm font-medium truncate">Developer</div>
+            <div className="text-sm font-medium truncate">
+              {user?.name || "User"}
+            </div>
             <div className="text-xs text-white/40 truncate">
-              dev@example.com
+              {user?.email || ""}
             </div>
           </div>
-          <button className="p-1.5 rounded-lg hover:bg-white/5 transition-colors">
-            <span className="text-white/40 text-sm">⚙</span>
+          <button
+            onClick={() => signOut({ callbackUrl: "/" })}
+            className="p-1.5 rounded-lg hover:bg-white/5 transition-colors group"
+            title="Sign out"
+          >
+            <svg
+              className="w-4 h-4 text-white/40 group-hover:text-white/70 transition-colors"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+              />
+            </svg>
           </button>
         </div>
       </div>
@@ -99,6 +129,8 @@ interface HeaderProps {
 }
 
 export function Header({ title }: HeaderProps) {
+  const { data: session } = useSession();
+
   return (
     <motion.header
       initial={{ y: -10, opacity: 0 }}
@@ -111,13 +143,18 @@ export function Header({ title }: HeaderProps) {
         <button className="text-sm text-white/50 hover:text-white transition-colors">
           Documentation
         </button>
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="px-4 py-2 bg-white text-black rounded-lg text-sm font-medium hover:bg-white/90 transition-colors"
-        >
-          Upgrade Plan
-        </motion.button>
+        {session?.user && (
+          <div className="flex items-center gap-3 pl-4 border-l border-white/10">
+            <span className="text-sm text-white/60">{session.user.email}</span>
+            {session.user.image && (
+              <img
+                src={session.user.image}
+                alt=""
+                className="w-8 h-8 rounded-full"
+              />
+            )}
+          </div>
+        )}
       </div>
     </motion.header>
   );

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useSession, signOut } from "next-auth/react";
 
 /* ============================================================
    TOGGLE SWITCH
@@ -37,6 +38,7 @@ interface SettingsInputProps {
   type?: string;
   defaultValue?: string;
   placeholder?: string;
+  disabled?: boolean;
 }
 
 function SettingsInput({
@@ -44,6 +46,7 @@ function SettingsInput({
   type = "text",
   defaultValue,
   placeholder,
+  disabled = false,
 }: SettingsInputProps) {
   return (
     <div className="p-5 rounded-xl bg-[#0a0a0a] border border-white/[0.06]">
@@ -52,7 +55,10 @@ function SettingsInput({
         type={type}
         defaultValue={defaultValue}
         placeholder={placeholder}
-        className="w-full px-4 py-2.5 rounded-lg bg-black border border-white/10 text-white focus:outline-none focus:border-white/30 text-sm transition-colors"
+        disabled={disabled}
+        className={`w-full px-4 py-2.5 rounded-lg bg-black border border-white/10 text-white focus:outline-none focus:border-white/30 text-sm transition-colors ${
+          disabled ? "opacity-60 cursor-not-allowed" : ""
+        }`}
       />
     </div>
   );
@@ -62,6 +68,9 @@ function SettingsInput({
    SETTINGS TAB
    ============================================================ */
 export function SettingsTab() {
+  const { data: session } = useSession();
+  const user = session?.user;
+
   const [notifications, setNotifications] = useState({
     transactions: true,
     usage: true,
@@ -75,19 +84,51 @@ export function SettingsTab() {
 
   return (
     <div className="space-y-8 max-w-2xl">
+      {/* Profile Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <h3 className="text-sm font-medium text-white/70 mb-4">Profile</h3>
+        <div className="p-5 rounded-xl bg-[#0a0a0a] border border-white/[0.06]">
+          <div className="flex items-center gap-4">
+            {user?.image ? (
+              <img
+                src={user.image}
+                alt={user.name || "User"}
+                className="w-16 h-16 rounded-full object-cover"
+              />
+            ) : (
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-2xl font-semibold">
+                {user?.name?.[0] || user?.email?.[0] || "U"}
+              </div>
+            )}
+            <div>
+              <div className="font-medium text-lg">{user?.name || "User"}</div>
+              <div className="text-sm text-white/50">{user?.email || ""}</div>
+              <div className="text-xs text-white/30 mt-1">
+                Signed in with Google
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
       {/* Account Settings */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.05 }}
       >
         <h3 className="text-sm font-medium text-white/70 mb-4">Account</h3>
         <div className="space-y-4">
           <SettingsInput
             label="Email"
             type="email"
-            defaultValue="dev@example.com"
+            defaultValue={user?.email || ""}
+            disabled
           />
-          <SettingsInput label="Organization" defaultValue="Acme Corp" />
+          <SettingsInput label="Display Name" defaultValue={user?.name || ""} />
           <SettingsInput
             label="Webhook URL"
             placeholder="https://your-app.com/webhook"

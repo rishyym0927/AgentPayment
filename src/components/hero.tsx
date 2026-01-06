@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import {
   FadeIn,
   TextReveal,
@@ -46,6 +47,7 @@ function Particles() {
 export function HeroSection() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+  const { data: session } = useSession();
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95]);
@@ -116,10 +118,10 @@ export function HeroSection() {
               <div className="flex flex-wrap gap-4">
                 <MagneticButton>
                   <Link
-                    href="/dashboard"
+                    href={session ? "/dashboard" : "/auth/signin"}
                     className="px-8 py-4 bg-white text-black font-semibold rounded-xl hover:bg-white/90 transition-colors inline-block"
                   >
-                    Start Building →
+                    {session ? "Go to Dashboard →" : "Start Building →"}
                   </Link>
                 </MagneticButton>
                 <MagneticButton>
